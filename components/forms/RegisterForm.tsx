@@ -88,15 +88,6 @@ const RegisterForm = ({ user }: { user: User }) => {
 
     setIsLoading(false);
 
-    // try {
-    //   const userData = { name, email, phone };
-
-    //   const user = await createUser(userData);
-
-    //   if (user) router.push(`/patients/${user.$id}/register`);
-    // } catch (error) {
-    //   console.log(error);
-    // }
   }
 
   return (
