@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+// forms
 import {
   Form,
   FormControl,
@@ -13,7 +14,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import CustomFormField from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { useState } from "react";
@@ -21,10 +21,10 @@ import { UserFormValidation } from "@/lib/validation";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
 
-
+// from field
 export enum FormFieldType {
   INPUT = "input",
-  TEXT = "textarea",
+  TEXTAREA = "textarea",
   PHONE_INPUT = "phoneInput",
   CHECKBOX = "checkbox",
   DATE_PICKER = "datePicker",
@@ -33,13 +33,9 @@ export enum FormFieldType {
 }
 
 const PatientForm = () => {
-
   const router = useRouter();
- 
 
   const [isLoading, setIsLoading] = useState(false);
-
-
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof UserFormValidation>>({
@@ -62,14 +58,11 @@ const PatientForm = () => {
     setIsLoading(true);
 
     try {
-
       const userData = { name, email, phone };
 
       const user = await createUser(userData);
 
-      if(user)   router.push(`/patients/${user.$id}/register`)
-
-
+      if (user) router.push(`/patients/${user.$id}/register`);
     } catch (error) {
       console.log(error);
     }
