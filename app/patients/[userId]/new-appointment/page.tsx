@@ -4,8 +4,12 @@ import { getPatient } from "@/lib/actions/patient.actions";
 import Image from "next/image";
 import Link from "next/link";
 
+import * as Sentry from "@sentry/nextjs";
+
 const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
   const patient = await getPatient(userId);
+  
+  Sentry.metrics.set("user_view_new-appointment", patient.name);
 
   return (
     <div className="flex h-screen max-h-screen">
@@ -26,9 +30,7 @@ const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
             patientId={patient.$id}
           />
 
-          <p className="copyright mt-10 py-12">
-            © 2024 CarePlus
-          </p>
+          <p className="copyright mt-10 py-12">© 2024 CarePlus</p>
         </div>
       </section>
 
