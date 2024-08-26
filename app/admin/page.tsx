@@ -3,17 +3,14 @@ import { columns } from "@/components/table/columns";
 import { DataTable } from "@/components/table/DataTable";
 import { getRecentAppointmentList } from "@/lib/actions/appointment.action";
 import Image from "next/image";
-import Link from "next/link";
-
-
-  
+import Link from "next/link";  
 
 const Admin =  async () => {
 
   const appointments = await getRecentAppointmentList()
 
   return (
-    <div className="mx-atuo flex max-w-7xl flex-col space-y-14">
+    <div className="mx-auto flex max-w-7xl flex-col space-y-14">
       <header className="admin-header">
         <Link href="/" className="cursor-pointer">
           <Image
